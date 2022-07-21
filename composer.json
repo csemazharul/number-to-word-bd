@@ -1,5 +1,13 @@
 {
-    "name": "vender/number-to-word-bd",
+    "name": "number-to-word-bd",
     "description": "number to word converter",
-    "require": {}
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "BDNTW\\": "app/"
+        }
+    }
 }
