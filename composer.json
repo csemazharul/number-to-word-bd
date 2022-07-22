@@ -1,5 +1,5 @@
 {
-    "name": "number-to-word-bd",
+    "name": "csemazharul/number-to-word-bd",
     "description": "number to word converter",
     "require-dev": {
         "phpunit/phpunit": "^9.5"
