@@ -13,113 +13,110 @@ namespace BDNTW;
  *
  */
 
-class NumtoWord {
+final class NumtoWord {
 
     /**
      * Hundred Word
      *
      * @var        string
      */
-    public $hundred = 'শত ';
-    /**
-     * Thousand Word
-     *
-     * @var        string
-     */
-    public $thousand = 'হাজার';
-    /**
-     * Lakh Word
-     *
-     * @var        string
-     */
-    public $lakh = 'লক্ষ';
-    /**
-     * Crore Word
-     *
-     * @var        string
-     */
-    public $crore = 'কোটি';
-    /**
-     * And word
-     *
-     * @var string
-     */
-    public $and = 'এবং';
-    /**
-     * Number to Words
-     *
-     * These are the presets we will need
-     *
-     * Rest will be calculated automatically
-     *
-     * @var        array
-     */
-    public $numToWord = [
-        '0'  => 'জিরো',
-        '1'  => 'এক',
-        '2'  => 'দুই',
-        '3'  => 'তিন',
-        '4'  => 'চার',
-        '5'  => 'পাচ',
-        '6'  => 'ছয়',
-        '7'  => 'সাত',
-        '8'  => 'আট',
-        '9'  => 'নয়',
-        '10' => 'দশ',
-        '11' => 'এগারো',
-        '12' => 'বারো',
-        '13' => 'তেরো',
-        '14' => 'চৌদ্দ',
-        '15' => 'পনেরো',
-        '16' => 'ষোল',
-        '17' => 'সতেরো',
-        '18' => 'আটারো',
-        '19' => 'উনিশ',
-        '20' => 'বিশ',
-        '30' => 'ত্রিশ',
-        '40' => 'চল্লিশ',
-        '50' => 'পঞ্চাশ',
-        '60' => 'ষাট',
-        '70' => 'সত্তর',
-        '80' => 'আশি',
-        '90' => 'নব্বই',
-    ];
 
-    /**
-     * Crore Divisor
-     *
-     * @var        integer
-     * @access     private
-     */
-    private $croreDivisor = 10000000;
-    /**
-     * Lakh Divisor
-     *
-     * @var        integer
-     * @access     private
-     */
-    private $lakhDivisor = 100000;
-    /**
-     * Thousand Divisor
-     *
-     * @var        integer
-     * @access     private
-     */
-    private $thousandDivisor = 1000;
-    /**
-     * Hundred Divisor
-     *
-     * @var        integer
-     * @access     private
-     */
-    private $hundredDivisor = 100;
-    /**
-     * A flag to properly append AND to the last hundred word
-     *
-     * @var        boolean
-     * @access     private
-     */
-    private $firstCall = false;
+    public $lang = 'en';
+
+    public function getNumberWordLabel() {
+
+        return [
+            'en' => [
+                'hundred'  => 'Hundred',
+                'thousand' => 'Thousand',
+                'lakh'     => 'Lakh',
+                'crore'    => 'Crore',
+                'and'      => 'And',
+            ],
+            'bn' => [
+                'hundred'  => 'একশ',
+                'thousand' => 'হাজার',
+                'lakh'     => 'লক্ষ',
+                'crore'    => 'কোটি',
+                'and'      => 'এবং',
+            ],
+        ];
+
+    }
+
+    public function getNumberToWord() {
+
+        return [
+            'en' => Helper::numToWordEn(),
+            'bn' => Helper::numToWordBn(),
+        ];
+
+    }
+
+    // public $hundred = 'শত ';
+    // /**
+    //  * Thousand Word
+    //  *
+    //  * @var        string
+    //  */
+    // public $thousand = 'হাজার';
+    // /**
+    //  * Lakh Word
+    //  *
+    //  * @var        string
+    //  */
+    // public $lakh = 'লক্ষ';
+    // /**
+    //  * Crore Word
+    //  *
+    //  * @var        string
+    //  */
+    // public $crore = 'কোটি';
+    // /**
+    //  * And word
+    //  *
+    //  * @var string
+    //  */
+    // public $and = 'এবং';
+    // /**
+    //  * Number to Words
+    //  *
+    //  * These are the presets we will need
+    //  *
+    //  * Rest will be calculated automatically
+    //  *
+    //  * @var        array
+    //  */
+    // public $numToWordBn = [
+    //     '0'  => 'জিরো',
+    //     '1'  => 'এক',
+    //     '2'  => 'দুই',
+    //     '3'  => 'তিন',
+    //     '4'  => 'চার',
+    //     '5'  => 'পাচ',
+    //     '6'  => 'ছয়',
+    //     '7'  => 'সাত',
+    //     '8'  => 'আট',
+    //     '9'  => 'নয়',
+    //     '10' => 'দশ',
+    //     '11' => 'এগারো',
+    //     '12' => 'বারো',
+    //     '13' => 'তেরো',
+    //     '14' => 'চৌদ্দ',
+    //     '15' => 'পনেরো',
+    //     '16' => 'ষোল',
+    //     '17' => 'সতেরো',
+    //     '18' => 'আটারো',
+    //     '19' => 'উনিশ',
+    //     '20' => 'বিশ',
+    //     '30' => 'ত্রিশ',
+    //     '40' => 'চল্লিশ',
+    //     '50' => 'পঞ্চাশ',
+    //     '60' => 'ষাট',
+    //     '70' => 'সত্তর',
+    //     '80' => 'আশি',
+    //     '90' => 'নব্বই',
+    // ];
 
     /**
      * Converts a number into words value following indian number system with
@@ -136,12 +133,15 @@ class NumtoWord {
      *
      * @return     string                            The covnerted value
      */
-    public function numToWord( $number ) {
+
+    public function numToWord( $number, $dfltLang = 'en' ) {
         /**
          * Check if a valid number is passed
          *
          * If not then log a warning
          */
+
+        $this->lang = $dfltLang;
         if ( !is_numeric( $number ) ) {
             // throw new Exception\NTWIndiaInvalidNumber( 'Valid number not given.' );
         }
@@ -155,8 +155,8 @@ class NumtoWord {
         $number = abs( $number );
 
         // Check if zero
-        if ( 0 == $number ) {
-            return $this->numToWord['0'];
+        if ( 0 === $number ) {
+            return $this->getNumberToWord[$this->lang]['0'];
         }
 
         // Change flag
@@ -192,10 +192,13 @@ class NumtoWord {
      */
     private function convertNumber( $number ) {
         // Init the return
+
+        $getDivisorNumber = Helper::getDivisorNumber();
+
         $word = [];
         // Lets start with crore
-        $crore_quotient = floor( $number / $this->croreDivisor );
-        $crore_remainder = $number % $this->croreDivisor;
+        $crore_quotient = floor( $number / $getDivisorNumber['crore'] );
+        $crore_remainder = $number % $getDivisorNumber['crore'];
 
         // If more than crore
         if ( $crore_quotient > 0 ) {
@@ -209,8 +212,8 @@ class NumtoWord {
         }
 
         // Calculate Lakh
-        $lakh_quotient = floor( $crore_remainder / $this->lakhDivisor );
-        $lakh_remainder = $crore_remainder % $this->lakhDivisor;
+        $lakh_quotient = floor( $crore_remainder / $getDivisorNumber['lakh'] );
+        $lakh_remainder = $crore_remainder % $getDivisorNumber['lakh'];
 
         // If more than lakh
         if ( $lakh_quotient > 0 ) {
@@ -218,8 +221,8 @@ class NumtoWord {
         }
 
         // Calculate thousand
-        $thousand_quotient = floor( $lakh_remainder / $this->thousandDivisor );
-        $thousand_remainder = $lakh_remainder % $this->thousandDivisor;
+        $thousand_quotient = floor( $lakh_remainder / $getDivisorNumber['thousand'] );
+        $thousand_remainder = $lakh_remainder % $getDivisorNumber['thousand'];
 
         // If more than thousand
         if ( $thousand_quotient > 0 ) {
@@ -227,8 +230,8 @@ class NumtoWord {
         }
 
         // Calculate hundred
-        $hundred_quotient = floor( $thousand_remainder / $this->hundredDivisor );
-        $hundred_remainder = $thousand_remainder % $this->hundredDivisor;
+        $hundred_quotient = floor( $thousand_remainder / $getDivisorNumber['hundred'] );
+        $hundred_remainder = $thousand_remainder % $getDivisorNumber['hundred'];
 
         // If more than hundred
         if ( $hundred_quotient > 0 ) {
@@ -245,7 +248,7 @@ class NumtoWord {
         foreach ( $word as $pos => $val ) {
             if ( 'zero' == $pos ) {
                 if ( true == $this->firstCall && $number > 99 ) {
-                    $return .= ' ' . $this->and;
+                    $return .= ' ' . $this->getNumberWordLabel()[$this->lang]['and'];
                 }
                 $return .= ' ' . $val;
             } else {
